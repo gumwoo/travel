@@ -1,0 +1,10 @@
+/* src/components/AnalysisResult/AnalysisResult.css */
+.analysis-result {
+    padding: 20px;
+  }
+  
+  .analysis-result pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  

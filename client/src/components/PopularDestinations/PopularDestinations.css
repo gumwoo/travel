@@ -1,0 +1,18 @@
+/* src/components/PopularDestinations/PopularDestinations.css */
+.popular-destinations .card {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .popular-destinations .card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .popular-destinations .card h3 {
+    color: white;
+    margin-top: 10px;
+  }
+  

@@ -1,0 +1,67 @@
+/* src/components/ChatWindow/ChatWindow.css */
+.chat-window {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: scroll;
+  padding: 10px;
+}
+
+.message {
+  margin-bottom: 10px;
+}
+
+.message.user {
+  text-align: right;
+}
+
+.input-area {
+  display: flex;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.input-area button {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+/* 추천 질문 스타일 추가 */
+.suggested-questions {
+  background-color: #334155;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.suggested-questions h4 {
+  margin: 0 0 10px 0;
+  color: white;
+}
+
+.suggested-questions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.suggested-questions li {
+  cursor: pointer;
+  padding: 8px 12px;
+  margin-bottom: 5px;
+  background-color: #475569;
+  color: white;
+  border-radius: 5px;
+}
+
+.suggested-questions li:hover {
+  background-color: #64748b;
+}

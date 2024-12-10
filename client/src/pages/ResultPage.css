@@ -1,0 +1,242 @@
+.result-page {
+  display: flex;
+  height: 100vh;
+  background: #1e293b; /* 어두운 배경 */
+  color: #e2e8f0; /* 밝은 텍스트 색상 */
+  font-family: 'Roboto', sans-serif; /* 깔끔한 폰트 */
+}
+
+.left-pane,
+.right-pane {
+  flex: 1; /* 1:1 비율 */
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.left-pane {
+  background: #0f172a; /* 더 어두운 왼쪽 패널 배경 */
+  border-right: 1px solid #475569;
+}
+
+.right-pane {
+  background: #1e293b; /* 오른쪽 패널 배경 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* 장소 정보 */
+.place-details {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #1e293b;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.place-photo {
+  width: 70%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.place-name {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #ffffff; /* 강조된 이름 색상 */
+}
+
+.place-address {
+  color: #94a3b8;
+  font-size: 1em;
+  margin-top: 5px;
+}
+
+.place-stats {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+  font-size: 1em;
+  color: #e2e8f0;
+}
+
+/* 긍정/부정 비율 그래프 */
+.rating-chart {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.rating-bar-container {
+  display: flex;
+  height: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+  background: #475569; /* 막대 배경 */
+  margin: 10px 0;
+  position: relative;
+}
+
+.positive-bar {
+  background: #4caf50; /* 초록색 긍정 */
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.negative-bar {
+  background: #f44336; /* 빨간색 부정 */
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.rating-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 0.95em;
+  color: #94a3b8;
+}
+
+.tooltip {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  pointer-events: none;
+  z-index: 100;
+  white-space: nowrap;
+}
+
+/* 분석 결과 섹션 */
+.analysis-summary,
+.advantages,
+.disadvantages,
+.useful-info {
+  margin-top: 20px;
+  background: #334155;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* 섹션 그림자 */
+}
+
+.analysis-summary h3,
+.advantages h3,
+.disadvantages h3,
+.useful-info h3 {
+  margin-bottom: 15px;
+  font-size: 1.3em;
+  color: #38bdf8; /* 강조된 섹션 제목 색상 */
+  border-bottom: 2px solid #475569;
+  padding-bottom: 5px;
+}
+
+/* 리스트 스타일 */
+.advantages ul,
+.disadvantages ul,
+.useful-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.analysis-summary ol,
+.advantages ul,
+.disadvantages ul,
+.useful-info ol {
+  list-style-position: inside;
+}
+
+.advantages li,
+.disadvantages li,
+.useful-info li {
+  margin-bottom: 10px;
+  font-size: 1em;
+  color: #cbd5e1; /* 밝은 텍스트 색상 */
+  line-height: 1.5;
+}
+
+/* 버튼 스타일 */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.logo-image {
+  width: 150px; /* 로고 크기 조정 */
+  height: auto; /* 비율 유지 */
+}
+
+
+
+.place-details {
+  margin-top: 40px; /* 로고와 사진 간격 확보 */
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #1e293b;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.google-maps-button-container {
+  margin-top: 20px; /* 유용한 정보 바로 아래 약간의 간격 */
+  text-align: left;
+  position: static; /* 고정 위치 제거 */
+  /* z-index, transform 등 제거 */
+}
+
+.google-maps-button {
+  display: inline-block;
+  background: #4caf50;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 30px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.google-maps-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+.loading-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #1e293b;
+  color: white;
+  flex-direction: column;
+}
+
+.loading-content {
+  text-align: center;
+}
+
+.loading-image {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 20px;
+}
+
+.loading-content p {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.loading-image {
+  width: 120px; /* 너비 조정 */
+  height: auto; /* 높이를 자동 비율로 */
+  margin-bottom: 20px; /* 텍스트와 간격 추가 */
+  border-radius: 50%; /* 원형 이미지 효과 */
+  object-fit: cover; /* 이미지 크기에 맞추기 */
+}

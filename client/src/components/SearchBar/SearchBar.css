@@ -1,0 +1,29 @@
+/* src/components/SearchBar/SearchBar.css */
+.search-bar {
+  display: flex;
+  width: 100%;
+  max-width: 600px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 15px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+}
+
+.search-bar button {
+  padding: 15px 20px;
+  font-size: 18px;
+  border: none;
+  background-color: #ff851b; /* 오렌지색 버튼 */
+  color: white;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background-color: #ff7700;
+}
