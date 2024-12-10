@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
-const keys = require('../config/keys');
+const keys = require('../../config/keys');
 
 // 장소 검색 API
 router.get('/search', async (req, res) => {
