@@ -18,8 +18,22 @@ function PopularDestinations() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 3, // 데스크톱에서 3개 보여주기
     slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 768, // width 768px 이하
+        settings: {
+          slidesToShow: 1 // 모바일에서는 1개만 표시
+        }
+      },
+      {
+        breakpoint: 1024, // 1024px 이하
+        settings: {
+          slidesToShow: 2 // 태블릿 환경에서는 2개만 표시
+        }
+      }
+    ]
   };
 
   return (

@@ -240,3 +240,15 @@
   border-radius: 50%; /* 원형 이미지 효과 */
   object-fit: cover; /* 이미지 크기에 맞추기 */
 }
+
+/* 모바일 환경: 세로로 정렬 */
+@media (max-width: 768px) {
+  .result-page {
+    flex-direction: column;
+  }
+  .left-pane, .right-pane {
+    width: 100%;
+    border-right: none;
+    /* 필요하다면 추가 padding/margin 조정 */
+  }
+}
