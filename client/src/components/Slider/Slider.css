@@ -1,15 +1,18 @@
+/* src/components/Slider/Slider.css */
+
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
 }
+
 .slider {
     overflow: hidden;
     width: 90%;
     max-width: 1100px;
     margin: 0 auto;
     position: relative;
-    height: auto; /* 슬라이더 높이를 고정 */
+    height: auto; 
     display: flex;
     align-items: center;
 }
@@ -20,27 +23,29 @@ body, html {
 }
 
 .slide {
-    min-width: 25%; /* 기본 슬라이드 너비 */
+    min-width: 25%; 
     box-sizing: border-box;
     padding: 10px;
     display: flex;
-    flex-direction: column; /* 텍스트와 이미지를 수직 정렬 */
+    flex-direction: column; 
     justify-content: center;
     align-items: center;
     cursor: pointer;
 }
 
+/* 기존: height: 350px; object-fit: cover; 에서 변경 */
 .slide img {
-    width: 100%; /* 슬라이드의 너비에 맞게 이미지 크기 설정 */
-    height: 350px; /* 이미지 높이를 고정 */
-    object-fit: cover; /* 비율을 유지하며 이미지 크기 조정 */
+    width: 100%; 
+    height: auto; /* 이미지 비율에 따라 자동 크기 조정 */
+    object-fit: contain; /* 이미지 전체가 보이도록 contain 사용 */
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    background-color: #000; /* 필요하다면 배경색 지정 (이미지 비율이 안 맞을 때 남는 공간에 배경 표시) */
 }
 
 .slide img:hover {
-    transform: scale(1.05); /* 이미지 확대 효과 */
+    transform: scale(1.05); 
 }
 
 .slide-name {
@@ -49,33 +54,37 @@ body, html {
     font-weight: bold;
     color: #ffffff;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.5); /* 텍스트 배경 추가 */
+    background-color: rgba(0, 0, 0, 0.5); 
     border-radius: 5px;
     padding: 5px;
-    width: 90%; /* 텍스트 배경이 이미지 아래에 정렬되도록 설정 */
+    width: 90%;
 }
+
 .slider-container {
-    margin: 0 auto; /* 가운데 정렬 */
+    margin: 0 auto; 
     padding: 0;
     width: 100%;
     height: auto;
 }
 footer {
-    margin: 0; /* 필요하다면 footer의 여백 제거 */
+    margin: 0; 
     padding: 0;
 }
-/* 화면 크기에 따라 슬라이드 개수 조정 */
+
+/* 반응형: 화면이 작아지면 슬라이드 개수 조정 */
 @media (max-width: 768px) {
     .slide {
-        min-width: 70%; /* 한 번에 두 개의 슬라이드 */
+        min-width: 70%; /* 한 번에 2개 정도 보여주기 */
     }
 
     .slider {
-        height: 200px; /* 슬라이더 높이를 모바일에 맞게 조정 */
+        /* height를 auto로 유지하면 이미지 비율에 따라 자동 조정 */
+        height: auto; 
     }
 
+    /* 이미지 높이를 auto로 유지 */
     .slide img {
-        height: 160px; /* 이미지 높이를 비율에 맞게 줄임 */
+        height: auto;
     }
 }
 
@@ -85,11 +94,11 @@ footer {
     }
 
     .slider {
-        height: 450px; /* 슬라이더 높이를 더 줄임 */
+        height: auto;
     }
 
     .slide img {
-        height: 250px; /* 이미지 높이를 비율에 맞게 더 줄임 */
+        height: auto;
     }
 }
 
