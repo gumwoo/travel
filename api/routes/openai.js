@@ -19,7 +19,6 @@ router.post("/analyze", async (req, res) => {
                 priceRange: ["정보 없음"],
                 eventDetails: ["정보 없음"],
                 culturalPoints: ["정보 없음"],
-                // 새로 추가할 카테고리 필드 (없으면 "정보 없음")
                 lodgingInfo: ["정보 없음"],
                 localFoods: ["정보 없음"],
                 localActivities: ["정보 없음"],
@@ -158,37 +157,89 @@ ${reviews.join("\n\n")}
         res.status(500).json({ error: "리뷰 분석 실패" });
     }
 });
-// 추천 질문 생성 API (변경 없음)
+
+// 추천 질문 생성 API 
 router.post('/get-suggestions', async (req, res) => {
     const { placeName } = req.body;
 
     try {
-        const prompt = `
-"${placeName}"에 대하여 다음 주제별로 궁금해할 만한 질문을 각각 1개씩 총 5개 제공해줘.
+        // 1. placeName으로 장소 검색해서 place_id 확보
+        const searchResponse = await axios.get(
+          'https://maps.googleapis.com/maps/api/place/textsearch/json',
+          {
+            params: {
+              query: placeName,
+              key: keys.google.placesApiKey,
+              language: 'ko',
+            },
+          }
+        );
+
+        const searchData = searchResponse.data;
+        const firstPlace = searchData.results && searchData.results[0];
+
+        if (!firstPlace) {
+          return res.status(404).json({ error: '해당 장소를 찾을 수 없습니다.' });
+        }
+
+        const placeId = firstPlace.place_id;
+
+        // 2. place_id로 장소 상세 정보 가져오기
+        const detailsResponse = await axios.get(
+          'https://maps.googleapis.com/maps/api/place/details/json',
+          {
+            params: {
+              place_id: placeId,
+              key: keys.google.placesApiKey,
+              language: 'ko',
+            },
+          }
+        );
+
+        const details = detailsResponse.data.result;
+        const placeTypes = details.types || [];
+        const isRestaurant = placeTypes.includes('restaurant') || placeTypes.includes('food');
+
+        let prompt;
+        
+        if (isRestaurant) {
+            // 맛집용 질문
+            prompt = `
+"${placeName}"은(는) 맛집(식당)으로 알려진 장소입니다. 이곳에 대해 다음 주제별로 궁금할 만한 질문을 각각 1개씩 총 5개 제공해주세요.
+
+주제:
+1. 대표 메뉴 및 음식 특징
+2. 가격대나 할인 이벤트 정보
+3. 예약 관련 팁 또는 대기 시간
+4. 주변 다른 먹거리 정보
+5. 꼭 맛봐야 할 시그니처 메뉴
+
+출력 형식:
+["질문1","질문2","질문3","질문4","질문5"]
+`;
+        } else {
+            // 일반 여행지용 질문
+            prompt = `
+"${placeName}"에 대하여 다음 주제별로 궁금해할 만한 질문을 각각 1개씩 총 5개 제공해주세요.
+
 주제:
 1. 숙박시설 (어떤 종류나 예약 팁 등)
 2. 먹거리 (대표 음식, 맛집)
 3. 놀거리 (액티비티, 관광지 내 추천 활동)
-4. 유명한 것 (해당 장소가 특히 유명한 특징, 명소)
+4. 유명한 것 (해당 장소가 특히나 유명한 특징, 명소)
 5. 꼭 해야할 것 (방문 시 놓치지 말아야 할 필수 경험)
 
 출력 형식:
-["질문1(숙박 관련)", "질문2(먹거리 관련)", "질문3(놀거리 관련)", "질문4(유명한 것 관련)", "질문5(꼭 해야할 것 관련)"]
-
-예시:
-["이곳에서 편하게 묵을 수 있는 숙박시설은 어떤 것들이 있나요?", 
- "이곳에서 꼭 맛봐야 할 대표 음식이 있나요?", 
- "이곳에서 즐길 수 있는 액티비티나 체험은 무엇인가요?", 
- "이 장소가 특히나 유명한 이유는 무엇인가요?", 
- "방문 시 절대 놓치지 말아야 할 경험이 있다면 무엇인가요?"]
-        `;
+["질문1","질문2","질문3","질문4","질문5"]
+`;
+        }
 
         const response = await axios.post(
             'https://api.openai.com/v1/chat/completions',
             {
                 model: 'gpt-3.5-turbo',
                 messages: [{ role: 'user', content: prompt }],
-                temperature: 0, // 응답 형태의 일관성 유지
+                temperature: 0.7, // 다양성 증가
             },
             {
                 headers: {
