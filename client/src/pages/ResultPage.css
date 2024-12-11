@@ -25,6 +25,42 @@
   justify-content: space-between;
 }
 
+/* 모바일: 세로 스택 */
+@media (max-width: 768px) {
+  .result-page {
+    flex-direction: column; /* 상하 배치 */
+    height: auto;
+  }
+
+  .left-pane,
+  .right-pane {
+    width: 100%;
+    border-right: none;
+  }
+
+  /* 모바일에서 폰트, 레이아웃 조정 */
+  .place-name {
+    font-size: 1.4em; 
+  }
+
+  .analysis-summary h3,
+  .advantages h3,
+  .disadvantages h3,
+  .useful-info h3 {
+    font-size: 1.1em;
+  }
+
+  .analysis-summary li,
+  .advantages li,
+  .disadvantages li,
+  .useful-info li {
+    font-size: 0.9em;
+  }
+  
+  /* 모바일에서는 결과(왼쪽) 위, 챗봇(오른쪽) 아래 */
+  /* 즉, 아무 추가 조치 없이 순서대로 렌더되므로 결과 위에, 챗봇 아래에 표시됨 */
+}
+
 /* 장소 정보 */
 .place-details {
   text-align: center;

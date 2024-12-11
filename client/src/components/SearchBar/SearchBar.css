@@ -18,7 +18,7 @@
   padding: 15px 20px;
   font-size: 18px;
   border: none;
-  background-color: #ff851b; /* 오렌지색 버튼 */
+  background-color: #ff851b; 
   color: white;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
@@ -26,4 +26,16 @@
 
 .search-bar button:hover {
   background-color: #ff7700;
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+  .search-bar input {
+    font-size: 14px;
+    padding: 10px;
+  }
+  .search-bar button {
+    font-size: 14px;
+    padding: 10px 15px;
+  }
 }

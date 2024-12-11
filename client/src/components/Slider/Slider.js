@@ -1,3 +1,4 @@
+// src/components/Slider/Slider.js
 import React from 'react';
 import './Slider.css';
 
@@ -27,7 +28,7 @@ const Slider = ({ onSearch }) => {
 
     const handleImageClick = (name) => {
         if (onSearch) {
-            onSearch(name); // 부모 컴포넌트에서 전달받은 콜백 함수 실행
+            onSearch(name);
         } else {
             console.error('onSearch 함수가 전달되지 않았습니다.');
         }
