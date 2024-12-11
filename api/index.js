@@ -5,7 +5,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
-const placesRouter = require('./routes/places');
+const placesRouter = require('./routes/places'); 
 const openaiRouter = require('./routes/openai');
 
 // 루트 경로에 대한 라우트 추가

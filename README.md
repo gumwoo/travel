@@ -1,4 +1,4 @@
-# 🌐 K-World Reviews
+# 🌐 ReviwTrip
 
 **한국인들의 솔직한 리뷰들로 여행의 실패 확률 제로!**
 
