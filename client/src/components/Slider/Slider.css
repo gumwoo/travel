@@ -26,9 +26,9 @@
 }
 
 .slide img {
-    width: 100%; /* 슬라이드의 너비에 맞게 이미지 크기 설정 */
-    height: 240px; /* 이미지 높이를 고정 */
-    object-fit: cover; /* 비율을 유지하며 이미지 크기 조정 */
+    width: 100%; 
+    height: auto; /* auto로 변경 */
+    object-fit: cover; /* 비율 유지하며 잘라내기 */
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
@@ -58,3 +58,10 @@
         transform: translateX(-100%);
     }
 }
+
+@media (max-width: 600px) {
+    .slide img {
+      width: 100%;
+      height: auto;
+    }
+  }
