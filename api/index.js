@@ -23,5 +23,4 @@ app.use(express.json());
 app.use('/api/places', placesRouter);
 app.use('/api/openai', openaiRouter);
 
-
 module.exports = app;
